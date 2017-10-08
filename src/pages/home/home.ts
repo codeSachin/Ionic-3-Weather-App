@@ -22,13 +22,13 @@ export class HomePage {
               private storage:Storage
   ) {
     this.weatherProvider.getLocation().subscribe(res => {
-      // console.log(res);
+      console.log(res);
       this.location = res.results[0].formatted_address;
       console.log(this.location);
       this.lat = res.results[0].geometry.location.lat;
       this.lng = res.results[0].geometry.location.lng;
-      // console.log(this.lat);
-      // console.log(this.lng);
+      console.log(this.lat);
+      console.log(this.lng);
     
     
     this.realWeatherProvider.getWeather(this.lat, this.lng).subscribe(weather=>{

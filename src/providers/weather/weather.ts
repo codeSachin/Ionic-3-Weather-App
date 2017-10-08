@@ -28,8 +28,7 @@ export class WeatherProvider {
       }
      
     });            
-    // console.log('Hello WeatherProvider Provider');
-    // console.log(this.encodedAddress);
+  
     this.url = `https://maps.googleapis.com/maps/api/geocode/json?address=${this.encodedAddress}`;
   }
 
