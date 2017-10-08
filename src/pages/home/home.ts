@@ -22,16 +22,16 @@ export class HomePage {
               private realWeatherProvider:RealWeatherProvider, 
               private storage:Storage
   ) {
-    this.storage.get('location').then((val)=>{
-      if(val!= null){
-        this.encodedAddress = encodeURIComponent(val);
+    // this.storage.get('location').then((val)=>{
+    //   if(val!= null){
+    //     this.encodedAddress = encodeURIComponent(val);
         
-      }
-      else{
-        this.encodedAddress = encodeURIComponent('Rajpura');
+    //   }
+    //   else{
+    //     this.encodedAddress = encodeURIComponent('Bangalore');
         
-      }
-    });
+    //   }
+    // });
     this.weatherProvider.getLocation().subscribe(res => {
       console.log(res);
       this.location = res.results[0].formatted_address;

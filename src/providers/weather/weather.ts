@@ -8,32 +8,30 @@ import { Storage } from "@ionic/storage";
 export class WeatherProvider {
 
   url;
-  address = 'Rajpura';
-  encodedAddress = encodeURIComponent('Rajpura');
+  address = 'Bangalore';
+  encodedAddress = encodeURIComponent('Bangalore');
 
   constructor(public http: Http,
               private storage:Storage) {
 
 
-     this.storage.get('location').then((val) => {
-      if(val!=null){
-        this.encodedAddress = encodeURIComponent(val);
-        console.log(this.encodedAddress);
-      }
-      else{
-        this.encodedAddress = encodeURIComponent('Rajpura');
-        console.log(this.encodedAddress);
-        
-      }
-      
-     
-    });            
+           
   
     this.url = `https://maps.googleapis.com/maps/api/geocode/json?address=${this.encodedAddress}`;
   }
 
   getLocation()
   {
+    this.storage.get('location').then((val)=>{
+      if(val!= null){
+        this.encodedAddress = encodeURIComponent(val);
+        
+      }
+      else{
+        this.encodedAddress = encodeURIComponent('Bangalore');
+        
+      }
+    });    
     this.url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+this.encodedAddress;
     console.log('getlocation encoded address is       ',this.encodedAddress);
     return this.http.get(this.url)
