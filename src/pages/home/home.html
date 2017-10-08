@@ -5,14 +5,30 @@
 </ion-header>
 
 <ion-content padding class="home">
-  <!-- <ion-grid *ngIf="weather">
+  <ion-grid *ngIf="weather">
     <ion-row>
       <ion-col width-50 offset-25>
-        <h2 class="location">{{location}}</h2>
+        <h2 class="location"> {{location}} </h2>
+        <br>
+        <h2 class="temperature">Temperature: {{weather.currently.temperature}}</h2>
+        <br>
+        <h2 class = "uv">UV Index: {{weather.currently.uvIndex}}</h2>
+        <br>
+        <h2 class="wind-speed">Wind Speed: {{weather.currently.windSpeed}}</h2>
       </ion-col>
     </ion-row>
 
-  </ion-grid> -->
-  {{location}} <br>  
-  {{temperature}}
+    <ion-row>
+      <ion-col width-100> 
+        <ion-item>
+          <strong> Dew point: </strong> {{weather.currently.dewPoint}}
+        </ion-item>
+        <ion-item>
+          <strong> Daily Summary: </strong> {{weather.currently.summary}}
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+ 
 </ion-content>
