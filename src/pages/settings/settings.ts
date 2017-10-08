@@ -25,7 +25,6 @@ export class SettingsPage {
     private weatherProvider:WeatherProvider, 
     private realWeatherProvider:RealWeatherProvider,
   ) {
-
     this.storage.get('location').then((val)=>{
       if(val!= null){
         let address = val;
@@ -38,11 +37,30 @@ export class SettingsPage {
   }
 
   saveForm(){
+    this.storage.set('location',null); 
+    
     let address = this.address;
     this.storage.set('location',address); 
     // this.storage.get('location').then((val)=>{
     //   this.address = val;
     // });
+    this.weatherProvider.getLocation().subscribe(res => {
+      console.log(res);
+      this.address = res.results[0].formatted_address;
+      console.log(this.address);
+      this.lat = res.results[0].geometry.location.lat;
+      this.lng = res.results[0].geometry.location.lng;
+      console.log(this.lat);
+      console.log(this.lng);
+    
+    
+    this.realWeatherProvider.getWeather(this.lat, this.lng).subscribe(weather=>{
+      console.log(weather);
+      this.weather = weather;
+    })
+    
+      
+    })
 
 
     
