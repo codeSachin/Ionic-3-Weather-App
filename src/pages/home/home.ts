@@ -24,6 +24,7 @@ export class HomePage {
     this.weatherProvider.getLocation().subscribe(res => {
       console.log(res);
       this.location = res.results[0].formatted_address;
+      console.log(this.location);
       this.lat = res.results[0].geometry.location.lat;
       this.lng = res.results[0].geometry.location.lng;
       console.log(this.lat);

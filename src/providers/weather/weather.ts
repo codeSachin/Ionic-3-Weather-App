@@ -17,10 +17,14 @@ export class WeatherProvider {
 
      this.storage.get('location').then((val) => {
       if(val!==null){
-        this.address = JSON.parse(val);
+        this.address = val;
+        this.encodedAddress = encodeURIComponent(val);
+        
       }
       else{
         this.address = 'Rajpura';
+        this.encodedAddress = encodeURIComponent(this.address);
+        
       }
      
     });            
@@ -37,9 +41,5 @@ export class WeatherProvider {
     .map(res => res.json());
   }
 
-  ionViewWillEnter(){
-   
-    
-  }
  
 }
