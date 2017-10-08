@@ -9,23 +9,23 @@ export class WeatherProvider {
 
   url;
   address = 'Rajpura';
-  encodedAddress = encodeURIComponent(this.address);
+  encodedAddress = encodeURIComponent('Rajpura');
 
   constructor(public http: Http,
               private storage:Storage) {
 
 
      this.storage.get('location').then((val) => {
-      if(val!==null){
-        this.address = val;
+      if(val!=null){
         this.encodedAddress = encodeURIComponent(val);
-        
+        console.log(this.encodedAddress);
       }
       else{
-        this.address = 'Rajpura';
-        this.encodedAddress = encodeURIComponent(this.address);
+        this.encodedAddress = encodeURIComponent('Rajpura');
+        console.log(this.encodedAddress);
         
       }
+      
      
     });            
   
@@ -34,8 +34,8 @@ export class WeatherProvider {
 
   getLocation()
   {
-    this.url = `https://maps.googleapis.com/maps/api/geocode/json?address=${this.encodedAddress}`;
-    
+    this.url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+this.encodedAddress;
+    console.log('getlocation encoded address is       ',this.encodedAddress);
     return this.http.get(this.url)
     .map(res => res.json());
   }
